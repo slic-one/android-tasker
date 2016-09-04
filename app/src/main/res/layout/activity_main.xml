@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+        android:scrollbarAlwaysDrawVerticalTrack="@bool/abc_action_bar_embed_tabs"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        tools:context="com.silentslic.stufftodo.MainActivity"
+        android:background="#131e2a">
+    <EditText
+            android:textColor="@android:color/white"
+            android:id="@+id/appwidget_edittext1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="styles/EditTextDark"/>
+    <EditText
+            android:layout_below="@+id/appwidget_edittext1"
+
+            android:textColor="@android:color/white"
+            android:id="@+id/appwidget_edittext2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="styles/EditTextDark"/>
+    <EditText
+            android:layout_below="@+id/appwidget_edittext2"
+
+            android:textColor="@android:color/white"
+            android:id="@+id/appwidget_edittext3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="styles/EditTextDark"/>
+    <EditText
+            android:layout_below="@+id/appwidget_edittext3"
+
+            android:textColor="@android:color/white"
+            android:id="@+id/appwidget_edittext4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="styles/EditTextDark"/>
+    <EditText
+            android:layout_below="@+id/appwidget_edittext4"
+
+            android:textColor="@android:color/white"
+            android:id="@+id/appwidget_edittext5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="styles/EditTextDark"/>
+    <EditText
+            android:layout_below="@+id/appwidget_edittext5"
+
+            android:textColor="@android:color/white"
+            android:id="@+id/appwidget_edittext6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="styles/EditTextDark"/>
+    <EditText
+            android:layout_below="@+id/appwidget_edittext6"
+
+            android:textColor="@android:color/white"
+            android:id="@+id/appwidget_edittext7"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="styles/EditTextDark"/>
+    <EditText
+            android:layout_below="@+id/appwidget_edittext7"
+
+            android:textColor="@android:color/white"
+            android:id="@+id/appwidget_edittext8"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="styles/EditTextDark"/>
+    <EditText
+            android:layout_below="@+id/appwidget_edittext8"
+
+            android:textColor="@android:color/white"
+            android:id="@+id/appwidget_edittext9"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="styles/EditTextDark"/>
+    <EditText
+            android:layout_below="@+id/appwidget_edittext9"
+
+            android:textColor="@android:color/white"
+            android:id="@+id/appwidget_edittext10"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="styles/EditTextDark"/>
+</RelativeLayout>

@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">StuffToDo</string>
+    <string name="appwidget_text">TODO</string>
+    <string name="add_widget">Add widget</string>
+    <string name="save_file">Save File</string>
+    <string name="save_file_name">tasks</string>
+</resources>
