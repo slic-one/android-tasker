@@ -25,7 +25,6 @@ public class MainActivity extends AppCompatActivity {
             R.id.appwidget_edittext10,
     };
 
-    //TODO: find out wtf is wrong, prefs won't load as they don't exist
     private SharedPreferences sharedPref;
 
     @Override
@@ -33,14 +32,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //sharedPref = this.getSharedPreferences("tasks", Context.MODE_PRIVATE);
         sharedPref = this.getPreferences(Context.MODE_PRIVATE);
 
-        Toast.makeText(getApplicationContext(), (sharedPref.getString(findViewById(R.id.appwidget_edittext1).toString(), "nope")), Toast.LENGTH_LONG).show();
         EditText et;
-        for (int id : EDITTEXT_IDS) {
-            et = (EditText) findViewById(id);
-            et.setText(sharedPref.getString(findViewById(id).toString(), ""));
+        for (int i = 0; i < EDITTEXT_IDS.length; i++) {
+            et = (EditText) findViewById(EDITTEXT_IDS[i]);
+            et.setText(sharedPref.getString(String.valueOf(i), "<loading_error>"));
         }
     }
 
@@ -64,9 +61,17 @@ public class MainActivity extends AppCompatActivity {
 
     private void saveTasksToFile() {
         SharedPreferences.Editor editor = sharedPref.edit();
-        for (int id : EDITTEXT_IDS) {
-            editor.putString(findViewById(id).toString(), ((EditText) findViewById(id)).getText().toString());
+
+        for (int i = 0; i < EDITTEXT_IDS.length; i++) {
+            editor.putString(String.valueOf(i), ((EditText) findViewById(EDITTEXT_IDS[i])).getText().toString());
         }
-        editor.apply();
+        editor.clear().apply();
+
+        //debug toast
+        Toast.makeText(getApplicationContext(), "Saved", Toast.LENGTH_LONG).show();
+    }
+
+    private void refreshWidget() {
+
     }
 }
