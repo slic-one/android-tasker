@@ -5,6 +5,14 @@
                 android:background="#1a1a1a00">
 
     <TextView
+            android:id="@+id/appwidget_text0"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
+            style="@android:style/Widget.EditText"/>
+    <TextView
+            android:layout_below="@+id/appwidget_text0"
+
             android:id="@+id/appwidget_text1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -74,14 +82,5 @@
             android:layout_height="wrap_content"
             android:textColor="@android:color/white"
             style="@android:style/Widget.EditText"/>
-    <TextView
-            android:layout_below="@+id/appwidget_text9"
-
-            android:id="@+id/appwidget_text10"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@android:color/white"
-            style="@android:style/Widget.EditText"/>
-
 
 </RelativeLayout>

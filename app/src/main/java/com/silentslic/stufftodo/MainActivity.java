@@ -42,6 +42,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onDestroy() {
+        //save before exiting
+        saveTasksToFile();
+        super.onDestroy();
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.app_menu, menu);
@@ -51,10 +58,14 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.action_save: // User chose the "Save File" action, save the file...
-                saveTasksToFile();
+            case R.id.action_new_page:
+
                 return true;
-            default: // Invoke the superclass to handle unrecognized action.
+            case R.id.action_display_on_widget:
+
+                return true;
+            default:
+                // Invoke the superclass to handle unrecognized action.
                 return super.onOptionsItemSelected(item);
         }
     }
@@ -68,10 +79,7 @@ public class MainActivity extends AppCompatActivity {
         editor.clear().apply();
 
         //debug toast
-        Toast.makeText(getApplicationContext(), "Saved", Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(), "Saved", Toast.LENGTH_SHORT).show();
     }
 
-    private void refreshWidget() {
-
-    }
 }
