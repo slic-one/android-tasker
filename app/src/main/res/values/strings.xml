@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Taskframe</string>
+    <string name="appwidget_text">TODO</string>
+    <string name="add_widget">Add widget</string>
+
+    <!--Menu values-->
+    <string name="new_page">New Page</string>
+    <string name="display_on_widget">Display current page on widget</string>
+    <string name="undo_changes">Undo changes</string>
+
+</resources>
