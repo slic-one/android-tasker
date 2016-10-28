@@ -24,11 +24,10 @@
 
             <EditText
 
-                    android:textColor="@android:color/white"
                     android:id="@+id/appwidget_edittext1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    style="styles/EditTextDark"/>
+                    style="@style/EditTextDark"/>
             <EditText
                     android:layout_below="@+id/appwidget_edittext1"
 
@@ -36,7 +35,7 @@
                     android:id="@+id/appwidget_edittext2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    style="styles/EditTextDark"/>
+                    style="@style/EditTextDark"/>
             <EditText
                     android:layout_below="@+id/appwidget_edittext2"
 
@@ -44,7 +43,7 @@
                     android:id="@+id/appwidget_edittext3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    style="styles/EditTextDark"/>
+                    style="@style/EditTextDark"/>
             <EditText
                     android:layout_below="@+id/appwidget_edittext3"
 
@@ -52,7 +51,7 @@
                     android:id="@+id/appwidget_edittext4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    style="styles/EditTextDark"/>
+                    style="@style/EditTextDark"/>
             <EditText
                     android:layout_below="@+id/appwidget_edittext4"
 
@@ -60,7 +59,7 @@
                     android:id="@+id/appwidget_edittext5"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    style="styles/EditTextDark"/>
+                    style="@style/EditTextDark"/>
             <EditText
                     android:layout_below="@+id/appwidget_edittext5"
 
@@ -68,7 +67,7 @@
                     android:id="@+id/appwidget_edittext6"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    style="styles/EditTextDark"/>
+                    style="@style/EditTextDark"/>
             <EditText
                     android:layout_below="@+id/appwidget_edittext6"
 
@@ -76,7 +75,7 @@
                     android:id="@+id/appwidget_edittext7"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    style="styles/EditTextDark"/>
+                    style="@style/EditTextDark"/>
             <EditText
                     android:layout_below="@+id/appwidget_edittext7"
 
@@ -84,7 +83,7 @@
                     android:id="@+id/appwidget_edittext8"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    style="styles/EditTextDark"/>
+                    style="@style/EditTextDark"/>
             <EditText
                     android:layout_below="@+id/appwidget_edittext8"
 
@@ -92,7 +91,7 @@
                     android:id="@+id/appwidget_edittext9"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    style="styles/EditTextDark"/>
+                    style="@style/EditTextDark"/>
             <EditText
                     android:layout_below="@+id/appwidget_edittext9"
 
@@ -100,7 +99,7 @@
                     android:id="@+id/appwidget_edittext10"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    style="styles/EditTextDark"/>
+                    style="@style/EditTextDark"/>
         </RelativeLayout>
     </ScrollView>
 </RelativeLayout>
