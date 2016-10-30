@@ -20,7 +20,7 @@
                 android:paddingRight="@dimen/activity_horizontal_margin"
                 android:paddingTop="@dimen/activity_vertical_margin"
                 android:paddingBottom="@dimen/activity_vertical_margin"
-                tools:context="com.silentslic.stufftodo.MainActivity">
+                tools:context="com.silentslic.taskframelight.MainActivity">
 
             <EditText
 

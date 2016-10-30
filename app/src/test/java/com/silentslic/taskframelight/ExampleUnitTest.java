@@ -1,4 +1,4 @@
-package com.silentslic.stufftodo;
+package com.silentslic.taskframelight;
 
 import org.junit.Test;
 

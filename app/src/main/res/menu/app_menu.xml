@@ -2,11 +2,8 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
       xmlns:app="http://schemas.android.com/apk/res-auto"
       xmlns:tools="http://schemas.android.com/tools"
-      tools:context="com.silentslic.stufftodo.MainActivity">
+      tools:context="com.silentslic.taskframelight.MainActivity">
 
-    <item android:id="@+id/action_new_page"
-          android:title="@string/new_page"
-          app:showAsAction="never"/>
     <item android:id="@+id/action_undo_changes"
         android:title="@string/undo_changes"
         app:showAsAction="never"/>

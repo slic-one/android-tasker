@@ -6,7 +6,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.widget.RemoteViews;
-import com.silentslic.stufftodo.R;
+import com.silentslic.taskframelight.R;
 
 /**
  * Implementation of App Widget functionality.

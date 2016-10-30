@@ -25,7 +25,7 @@
         jumboMode="true"
         optimize="true"
         revision="24.0.2"
-        sha1="c01c0fb197a2f8b37bb59cf2b2a049d7f4f360f0">
+        sha1="b74c99f76b8b056a7762083edc5e450c2e3247df">
         <dex dex="/home/slic/android-tasker/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_c8d77a53d2f21a86291b8a7a27ede76314fdc5ba/classes.dex" />
     </item>
     <item
@@ -133,7 +133,7 @@
         jumboMode="true"
         optimize="true"
         revision="24.0.2"
-        sha1="e3ce9366130787f6c86026d912956b64892280e6">
+        sha1="8b2e27b1c8ab28a0217da562e56300c3770f56fa">
         <dex dex="/home/slic/android-tasker/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_1fee98945d9c91a03d9c835ebec99c125d5cfc70/classes.dex" />
     </item>
     <item

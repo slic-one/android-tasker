@@ -1,4 +1,4 @@
-package com.silentslic.stufftodo;
+package com.silentslic.taskframelight;
 
 import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
@@ -93,9 +93,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.action_new_page:
-
-                return true;
             case R.id.action_undo_changes:
                 //Load last saved tasks
 
