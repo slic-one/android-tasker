@@ -96,12 +96,6 @@ public class MainActivity extends AppCompatActivity {
             case R.id.action_new_page:
 
                 return true;
-            case R.id.action_display_on_widget:
-                //force widget update
-
-                saveTasks();
-                updateWidget();
-                return true;
             case R.id.action_undo_changes:
                 //Load last saved tasks
 
