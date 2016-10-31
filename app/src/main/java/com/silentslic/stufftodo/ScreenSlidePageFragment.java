@@ -4,6 +4,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,8 +16,6 @@ import android.widget.Toast;
  */
 
 public class ScreenSlidePageFragment extends Fragment {
-
-    private static final String TAG = ScreenSlidePageFragment.class.getSimpleName();
 
     private  View root;
 
@@ -38,10 +37,10 @@ public class ScreenSlidePageFragment extends Fragment {
     @Override
     public void onResume() {
         try {
-            //load();
+            load();
         }
         catch (Exception ex) {
-
+            ex.printStackTrace();
         }
         super.onResume();
     }
@@ -52,9 +51,23 @@ public class ScreenSlidePageFragment extends Fragment {
         super.onDestroy();
     }
 
+    public static ScreenSlidePageFragment newInstance(String tag) {
+
+        ScreenSlidePageFragment fragment = new ScreenSlidePageFragment();
+
+        Bundle b = new Bundle();
+        b.putString("tag", tag);
+        fragment.setArguments(b);
+
+        return fragment;
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.tasks_page, container, false);
+
+        if (getArguments() != null)
+            rootView.setTag(getArguments().getString("tag"));
 
         this.root = rootView;
 
@@ -64,8 +77,8 @@ public class ScreenSlidePageFragment extends Fragment {
             EditText et;
             for (int i = 0; i < EDITTEXT_IDS.length; i++) {
                 et = (EditText) rootView.findViewById(EDITTEXT_IDS[i]);
-                //et.setText(sharedPref.getString(String.valueOf(i), ""));
-                et.setText(sharedPref.getString(TAG + i, ""));
+                Log.i(String.valueOf(i) + " create", root.getTag() + String.valueOf(i));
+                et.setText(sharedPref.getString(root.getTag() + String.valueOf(i), ""));
             }
         }
         catch (Exception ex) {
@@ -83,8 +96,7 @@ public class ScreenSlidePageFragment extends Fragment {
             EditText et;
             for (int i = 0; i < EDITTEXT_IDS.length; i++) {
                 et = (EditText) this.root.findViewById(EDITTEXT_IDS[i]);
-                //et.setText(sharedPref.getString(String.valueOf(i), ""));
-                et.setText(sharedPref.getString(TAG + i, ""));
+                et.setText(sharedPref.getString(root.getTag() + String.valueOf(i), ""));
             }
         }
         catch (Exception ex) {
@@ -97,46 +109,9 @@ public class ScreenSlidePageFragment extends Fragment {
         SharedPreferences.Editor editor = sharedPref.edit();
 
         for (int i = 0; i < EDITTEXT_IDS.length; i++) {
-            editor.putString(TAG + i, ((EditText) this.root.findViewById(EDITTEXT_IDS[i])).getText().toString());
+            Log.i(String.valueOf(i) + " saving", root.getTag() + String.valueOf(i));
+            editor.putString(root.getTag() + String.valueOf(i), ((EditText) this.root.findViewById(EDITTEXT_IDS[i])).getText().toString());
         }
         editor.clear().apply();
     }
-
-
-//    private void load() {
-//        sharedPref = PreferenceManager.getDefaultSharedPreferences(getContext());
-//
-//        try {
-//
-//            JSONObject json = new JSONObject(sharedPref.getString(TAG, "wut"));
-//
-////            EditText et;
-////            for (int i = 0; i < EDITTEXT_IDS.length; i++) {
-////                et = (EditText) getView().findViewById(EDITTEXT_IDS[i]);
-////                //et.setText(sharedPref.getString(String.valueOf(i), ""));
-////                et.setText(json.getString(String.valueOf(i)));
-////            }
-//        }
-//        catch (Exception ex) {
-//            Toast.makeText(getContext(), ex.getMessage(), Toast.LENGTH_LONG).show();
-//            ex.printStackTrace();
-//        }
-//    }
-//
-//    private void save() {
-//        JSONObject json = new JSONObject();
-//
-//        try {
-//            for (int i = 0; i < EDITTEXT_IDS.length; i++) {
-//                json.put(String.valueOf(i), ((EditText) getView().findViewById(EDITTEXT_IDS[i])).getText());
-//            }
-//        }
-//        catch (JSONException ex) {
-//            ex.printStackTrace();
-//        }
-//
-//        if (json.length() > 0) {
-//            sharedPref.edit().putString(TAG, json.toString()).apply();
-//        }
-//    }
 }

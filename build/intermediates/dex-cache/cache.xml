@@ -7,7 +7,7 @@
         jumboMode="true"
         optimize="true"
         revision="24.0.2"
-        sha1="dff2e5728058824acd2a34453ebe2fdd88aed240">
+        sha1="5d34953a263d6f22df8611e49772f3d0825f116d">
         <dex dex="/home/slic/ZeWorkspace/android-tasker/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_8fc5e13d81374e46136691b6522d068b20dacf13/classes.dex" />
     </item>
     <item
@@ -97,7 +97,7 @@
         jumboMode="true"
         optimize="true"
         revision="24.0.2"
-        sha1="4bf2da5e88fd427a3d991381b0e765bded9b646a">
+        sha1="f27848a7a5288f656425e6b43626bd2ad96f9fe5">
         <dex dex="/home/slic/ZeWorkspace/android-tasker/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_9a134599c75f67337e6a8bb0fcd2472d4a214914/classes.dex" />
     </item>
     <item

@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
@@ -16,20 +17,10 @@ import android.view.MenuItem;
 
 public class MainActivity extends FragmentActivity {
 
-    /**
-     * The number of pages (wizard steps) to show in this demo.
-     */
-    private static final int NUM_PAGES = 5;
+    private static int NUM_PAGES = 2;
 
-    /**
-     * The pager widget, which handles animation and allows swiping horizontally to access previous
-     * and next wizard steps.
-     */
     private ViewPager mPager;
 
-    /**
-     * The pager adapter, which provides the pages to the view pager widget.
-     */
     private PagerAdapter mPagerAdapter;
 
 
@@ -83,34 +74,22 @@ public class MainActivity extends FragmentActivity {
      * A simple pager adapter that represents 5 ScreenSlidePageFragment objects, in
      * sequence.
      */
+
+    private static int counter = 0;
+
     private class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter {
         public ScreenSlidePagerAdapter(FragmentManager fm) {
             super(fm);
         }
 
         @Override
-        public Fragment getItem(int position) {
-            return new ScreenSlidePageFragment();
-        }
+        public Fragment getItem(int position) { return new ScreenSlidePageFragment(); }
 
         @Override
         public int getCount() {
             return NUM_PAGES;
         }
     }
-
-    private static final int[] EDITTEXT_IDS = {
-            R.id.appwidget_edittext1,
-            R.id.appwidget_edittext2,
-            R.id.appwidget_edittext3,
-            R.id.appwidget_edittext4,
-            R.id.appwidget_edittext5,
-            R.id.appwidget_edittext6,
-            R.id.appwidget_edittext7,
-            R.id.appwidget_edittext8,
-            R.id.appwidget_edittext9,
-            R.id.appwidget_edittext10,
-    };
 
     private SharedPreferences sharedPref;
 
@@ -145,7 +124,7 @@ public class MainActivity extends FragmentActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_new_page:
-
+                addPage();
                 return true;
             case R.id.action_undo_changes:
                 //Load last saved tasks
@@ -156,6 +135,13 @@ public class MainActivity extends FragmentActivity {
                 // Invoke the superclass to handle unrecognized action.
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    private void addPage() {
+        NUM_PAGES++;
+        mPagerAdapter.notifyDataSetChanged();
+        getSupportFragmentManager().beginTransaction().add(ScreenSlidePageFragment.newInstance("page" + counter++), "some tag").commit();
+
     }
 
 //    private void saveTasks() {
@@ -194,7 +180,5 @@ public class MainActivity extends FragmentActivity {
 //        intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS,ids);
 //        sendBroadcast(intent);
 //    }
-
-    // key = et.id + pg.id ?
 
 }
