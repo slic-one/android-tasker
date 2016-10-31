@@ -1,15 +1,15 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowBackground">@color/colorPrimaryDark</item>
     </style>
     <style name="EditTextDark" parent="android:Widget.EditText">
-        <item name="android:contentDescription">@string/appwidget_text</item>
-        <item name="android:background">@android:drawable/editbox_background_normal</item>
+        <item name="theme">@style/Theme.AppCompat.Light.DarkActionBar</item>
         <item name="android:textColor">#ffffff</item>
     </style>
 

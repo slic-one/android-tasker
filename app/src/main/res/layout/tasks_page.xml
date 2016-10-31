@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/linear"
     android:background="#131e2a">
 
     <EditText
@@ -9,60 +10,60 @@
         android:id="@+id/appwidget_edittext1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="styles/EditTextDark"/>
+        style="@style/EditTextDark"/>
     <EditText
         android:textColor="@android:color/white"
         android:id="@+id/appwidget_edittext2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="styles/EditTextDark"/>
+        style="@style/EditTextDark"/>
     <EditText
         android:textColor="@android:color/white"
         android:id="@+id/appwidget_edittext3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="styles/EditTextDark"/>
+        style="@style/EditTextDark"/>
     <EditText
         android:textColor="@android:color/white"
         android:id="@+id/appwidget_edittext4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="styles/EditTextDark"/>
+        style="@style/EditTextDark"/>
     <EditText
         android:textColor="@android:color/white"
         android:id="@+id/appwidget_edittext5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="styles/EditTextDark"/>
+        style="@style/EditTextDark"/>
     <EditText
         android:textColor="@android:color/white"
         android:id="@+id/appwidget_edittext6"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="styles/EditTextDark"/>
+        style="@style/EditTextDark"/>
     <EditText
         android:textColor="@android:color/white"
         android:id="@+id/appwidget_edittext7"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="styles/EditTextDark"/>
+        style="@style/EditTextDark"/>
     <EditText
         android:textColor="@android:color/white"
         android:id="@+id/appwidget_edittext8"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="styles/EditTextDark"/>
+        style="@style/EditTextDark"/>
     <EditText
         android:textColor="@android:color/white"
         android:id="@+id/appwidget_edittext9"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="styles/EditTextDark"/>
+        style="@style/EditTextDark"/>
     <EditText
         android:textColor="@android:color/white"
         android:id="@+id/appwidget_edittext10"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="styles/EditTextDark"/>
+        style="@style/EditTextDark"/>
 
 </LinearLayout>
