@@ -12,7 +12,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 /**
- * Fragment class for implementation of multiple task pages
+ * Fragment class for implementation of multiple pages
  */
 
 public class ScreenSlidePageFragment extends Fragment {
@@ -66,8 +66,12 @@ public class ScreenSlidePageFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.tasks_page, container, false);
 
+        Log.i("Main cont", getContext().toString());
+
         if (getArguments() != null)
             rootView.setTag(getArguments().getString("tag"));
+        else
+            rootView.setTag("defpage");
 
         this.root = rootView;
 
@@ -90,28 +94,11 @@ public class ScreenSlidePageFragment extends Fragment {
     }
 
     private void load() {
-        sharedPref = PreferenceManager.getDefaultSharedPreferences(getContext());
-
-        try {
-            EditText et;
-            for (int i = 0; i < EDITTEXT_IDS.length; i++) {
-                et = (EditText) this.root.findViewById(EDITTEXT_IDS[i]);
-                et.setText(sharedPref.getString(root.getTag() + String.valueOf(i), ""));
-            }
-        }
-        catch (Exception ex) {
-            Toast.makeText(getContext(), ex.getMessage(), Toast.LENGTH_LONG).show();
-            ex.printStackTrace();
-        }
+        // for each array load page
+        //     for each key load row
     }
 
     private void save() {
-        SharedPreferences.Editor editor = sharedPref.edit();
 
-        for (int i = 0; i < EDITTEXT_IDS.length; i++) {
-            Log.i(String.valueOf(i) + " saving", root.getTag() + String.valueOf(i));
-            editor.putString(root.getTag() + String.valueOf(i), ((EditText) this.root.findViewById(EDITTEXT_IDS[i])).getText().toString());
-        }
-        editor.clear().apply();
     }
 }

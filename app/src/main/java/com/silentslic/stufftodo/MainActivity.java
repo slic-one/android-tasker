@@ -3,6 +3,7 @@ package com.silentslic.stufftodo;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
@@ -11,13 +12,14 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
 public class MainActivity extends FragmentActivity {
 
-    private static int NUM_PAGES = 2;
+    private static int NUM_PAGES = 1;
 
     private ViewPager mPager;
 
@@ -40,6 +42,7 @@ public class MainActivity extends FragmentActivity {
                         public void onClick(DialogInterface dialog, int id) {
 //                            saveTasks();
 //                            updateWidget();
+
                             MainActivity.this.finish();
                         }
                     });
@@ -98,19 +101,30 @@ public class MainActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        Log.i("cont", this.toString());
+
         // Instantiate a ViewPager and a PagerAdapter.
         mPager = (ViewPager) findViewById(R.id.pager);
         mPagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
         mPager.setAdapter(mPagerAdapter);
 
-        //sharedPref = this.getPreferences(Context.MODE_PRIVATE);
+        sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
 
+        //Log.i("pref_load", String.valueOf(sharedPref.getInt("pagesCount", 999)));
 
-//        EditText et;
-//        for (int i = 0; i < EDITTEXT_IDS.length; i++) {
-//            et = (EditText) findViewById(EDITTEXT_IDS[i]);
-//            et.setText(sharedPref.getString(String.valueOf(i), "<loading_error>"));
-//        }
+        String value = sharedPref.getString("pagesCount", "1");
+
+        NUM_PAGES = Integer.parseInt(value);
+        mPagerAdapter.notifyDataSetChanged();
+
+        Log.i("NUM_PAGES create", String.valueOf(NUM_PAGES));
+
+        counter = 0;
+
+        for (int i = NUM_PAGES; i > 0; i--) {
+            addPage();
+        }
+
     }
 
     @Override
@@ -124,6 +138,8 @@ public class MainActivity extends FragmentActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_new_page:
+                NUM_PAGES++;
+                mPagerAdapter.notifyDataSetChanged();
                 addPage();
                 return true;
             case R.id.action_undo_changes:
@@ -138,10 +154,14 @@ public class MainActivity extends FragmentActivity {
     }
 
     private void addPage() {
-        NUM_PAGES++;
-        mPagerAdapter.notifyDataSetChanged();
+        Log.i("page", "addPage");
+
         getSupportFragmentManager().beginTransaction().add(ScreenSlidePageFragment.newInstance("page" + counter++), "some tag").commit();
 
+
+        Log.i("NUM_PAGES", String.valueOf(NUM_PAGES));
+        sharedPref.edit().putString("pagesCount", String.valueOf(NUM_PAGES)).clear().apply();
+        //Log.i("pref", String.valueOf(sharedPref.getInt("pagesCount", 999)));
     }
 
 //    private void saveTasks() {
