@@ -19,8 +19,6 @@ public class ScreenSlidePageFragment extends Fragment {
 
     private  View root;
 
-    SharedPreferences sharedPref;
-
     private static final int[] EDITTEXT_IDS = {
             R.id.appwidget_edittext1,
             R.id.appwidget_edittext2,
@@ -34,33 +32,33 @@ public class ScreenSlidePageFragment extends Fragment {
             R.id.appwidget_edittext10,
     };
 
-    @Override
-    public void onResume() {
-        try {
-            load();
-        }
-        catch (Exception ex) {
-            ex.printStackTrace();
-        }
-        super.onResume();
-    }
+//    @Override
+//    public void onResume() {
+//        try {
+//            load();
+//        }
+//        catch (Exception ex) {
+//            ex.printStackTrace();
+//        }
+//        super.onResume();
+//    }
+//
+//    @Override
+//    public void onDestroy() {
+//        save();
+//        super.onDestroy();
+//    }
 
-    @Override
-    public void onDestroy() {
-        save();
-        super.onDestroy();
-    }
-
-    public static ScreenSlidePageFragment newInstance(String tag) {
-
-        ScreenSlidePageFragment fragment = new ScreenSlidePageFragment();
-
-        Bundle b = new Bundle();
-        b.putString("tag", tag);
-        fragment.setArguments(b);
-
-        return fragment;
-    }
+//    public static ScreenSlidePageFragment newInstance(String tag) {
+//
+//        ScreenSlidePageFragment fragment = new ScreenSlidePageFragment();
+//
+//        Bundle b = new Bundle();
+//        b.putString("tag", tag);
+//        fragment.setArguments(b);
+//
+//        return fragment;
+//    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -68,21 +66,21 @@ public class ScreenSlidePageFragment extends Fragment {
 
         Log.i("Main cont", getContext().toString());
 
-        if (getArguments() != null)
-            rootView.setTag(getArguments().getString("tag"));
-        else
-            rootView.setTag("defpage");
+//        if (getArguments() != null)
+//            rootView.setTag(getArguments().getString("tag"));
+//        else
+//            rootView.setTag("4130" + "+" + this.getTag());
 
-        this.root = rootView;
+        rootView.setTag("4130" + "+" + this.getTag());
 
-        sharedPref = PreferenceManager.getDefaultSharedPreferences(getContext());
+//        this.root = rootView;
 
         try {
             EditText et;
             for (int i = 0; i < EDITTEXT_IDS.length; i++) {
                 et = (EditText) rootView.findViewById(EDITTEXT_IDS[i]);
-                Log.i(String.valueOf(i) + " create", root.getTag() + String.valueOf(i));
-                et.setText(sharedPref.getString(root.getTag() + String.valueOf(i), ""));
+                Log.i(String.valueOf(i) + " create", rootView.getTag() + String.valueOf(i));
+                et.setText(rootView.getTag() + "+" + String.valueOf(i));
             }
         }
         catch (Exception ex) {

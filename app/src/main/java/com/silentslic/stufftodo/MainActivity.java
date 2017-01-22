@@ -122,7 +122,7 @@ public class MainActivity extends FragmentActivity {
         counter = 0;
 
         for (int i = NUM_PAGES; i > 0; i--) {
-            addPage();
+            addPage(i);
         }
 
     }
@@ -140,7 +140,7 @@ public class MainActivity extends FragmentActivity {
             case R.id.action_new_page:
                 NUM_PAGES++;
                 mPagerAdapter.notifyDataSetChanged();
-                addPage();
+                addPage(NUM_PAGES);
                 return true;
             case R.id.action_undo_changes:
                 //Load last saved tasks
@@ -153,10 +153,11 @@ public class MainActivity extends FragmentActivity {
         }
     }
 
-    private void addPage() {
+    private void addPage(int pageNumber) {
         Log.i("page", "addPage");
 
-        getSupportFragmentManager().beginTransaction().add(ScreenSlidePageFragment.newInstance("page" + counter++), "some tag").commit();
+        //getSupportFragmentManager().beginTransaction().add(ScreenSlidePageFragment.newInstance("page" + counter++), String.valueOf(pageNumber)).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.linear, new ScreenSlidePageFragment(), String.valueOf(pageNumber)).commit();
 
 
         Log.i("NUM_PAGES", String.valueOf(NUM_PAGES));
