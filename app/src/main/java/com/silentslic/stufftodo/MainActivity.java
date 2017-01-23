@@ -11,6 +11,7 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.SlidingPaneLayout;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.Menu;
@@ -121,8 +122,8 @@ public class MainActivity extends FragmentActivity {
 
         counter = 0;
 
-        for (int i = NUM_PAGES; i > 0; i--) {
-            addPage();
+        for (int i = 0; i < NUM_PAGES; i++) {
+            addPage(i);
         }
 
     }
@@ -140,7 +141,7 @@ public class MainActivity extends FragmentActivity {
             case R.id.action_new_page:
                 NUM_PAGES++;
                 mPagerAdapter.notifyDataSetChanged();
-                addPage();
+                addPage(NUM_PAGES);
                 return true;
             case R.id.action_undo_changes:
                 //Load last saved tasks
@@ -153,11 +154,16 @@ public class MainActivity extends FragmentActivity {
         }
     }
 
-    private void addPage() {
+    private void addPage(int id) {
         Log.i("page", "addPage");
 
-        getSupportFragmentManager().beginTransaction().add(ScreenSlidePageFragment.newInstance("page" + counter++), "some tag").commit();
+        ScreenSlidePageFragment f = new ScreenSlidePageFragment();
 
+        //getSupportFragmentManager().beginTransaction().add(f, String.valueOf("p"+id)).commit();
+
+        getSupportFragmentManager().beginTransaction().add(R.id.pager, f, String.valueOf("p"+id)).commit();
+//        getSupportFragmentManager().beginTransaction().replace(R.id.pager, f, String.valueOf("p"+id)).commit();
+        //getSupportFragmentManager().beginTransaction().add(ScreenSlidePageFragment.newInstance("page" + counter++), String.valueOf("p"+id)).commit();
 
         Log.i("NUM_PAGES", String.valueOf(NUM_PAGES));
         sharedPref.edit().putString("pagesCount", String.valueOf(NUM_PAGES)).clear().apply();

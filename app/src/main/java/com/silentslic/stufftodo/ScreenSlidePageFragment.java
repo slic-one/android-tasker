@@ -2,8 +2,12 @@ package com.silentslic.stufftodo;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Environment;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
+import android.support.v4.os.EnvironmentCompat;
+import android.util.JsonReader;
+import android.util.JsonWriter;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,11 +15,24 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import org.json.JSONObject;
+
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+
+import static android.content.ContentValues.TAG;
+
 /**
  * Fragment class for implementation of multiple pages
  */
 
 public class ScreenSlidePageFragment extends Fragment {
+
+    private final String TAG;
 
     private  View root;
 
@@ -34,21 +51,30 @@ public class ScreenSlidePageFragment extends Fragment {
             R.id.appwidget_edittext10,
     };
 
+    public ScreenSlidePageFragment() {
+        TAG = this.getTag();
+    }
+
     @Override
     public void onResume() {
-        try {
-            load();
-        }
-        catch (Exception ex) {
-            ex.printStackTrace();
-        }
         super.onResume();
+//        try {
+//            load();
+//        }
+//        catch (Exception ex) {
+//            ex.printStackTrace();
+//        }
     }
 
     @Override
     public void onDestroy() {
-        save();
         super.onDestroy();
+//        try {
+//            save();
+//        }
+//        catch (IOException ex) {
+//            ex.printStackTrace();
+//        }
     }
 
     public static ScreenSlidePageFragment newInstance(String tag) {
@@ -66,39 +92,62 @@ public class ScreenSlidePageFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.tasks_page, container, false);
 
-        Log.i("Main cont", getContext().toString());
+//        if (getArguments() != null)
+//            rootView.setTag(getArguments().getString("tag"));
+//        else
+//            rootView.setTag("defpage");
 
-        if (getArguments() != null)
-            rootView.setTag(getArguments().getString("tag"));
-        else
-            rootView.setTag("defpage");
+        //this.root = rootView;
 
-        this.root = rootView;
+//        sharedPref = PreferenceManager.getDefaultSharedPreferences(getContext());
 
-        sharedPref = PreferenceManager.getDefaultSharedPreferences(getContext());
-
-        try {
+//        try {
             EditText et;
             for (int i = 0; i < EDITTEXT_IDS.length; i++) {
                 et = (EditText) rootView.findViewById(EDITTEXT_IDS[i]);
-                Log.i(String.valueOf(i) + " create", root.getTag() + String.valueOf(i));
-                et.setText(sharedPref.getString(root.getTag() + String.valueOf(i), ""));
+                Log.i(String.valueOf(i) + " create", TAG + String.valueOf(i));
+                et.setText(TAG + "+" + String.valueOf(i));
+//                et.setText(sharedPref.getString(root.getTag() + String.valueOf(i), ""));
             }
-        }
-        catch (Exception ex) {
-            Toast.makeText(getContext(), ex.getMessage(), Toast.LENGTH_LONG).show();
-            ex.printStackTrace();
-        }
+//        }
+//        catch (Exception ex) {
+//            Toast.makeText(getContext(), ex.getMessage(), Toast.LENGTH_LONG).show();
+//            ex.printStackTrace();
+//        }
 
         return rootView;
     }
 
-    private void load() {
+    private void load() throws IOException {
         // for each array load page
         //     for each key load row
+        JsonReader reader = new JsonReader(new FileReader(new File(Environment.getExternalStorageDirectory(), "save.json")));
+        reader.beginArray();
+        for (int i = 0; i < 10; i++) { // lines
+            reader.beginObject();
+            Log.d(reader.nextName(), " ");
+            ((EditText) this.root.findViewById(EDITTEXT_IDS[i])).setText(reader.nextString());
+//            while (reader.hasNext()) {
+//                Log.d(reader.nextName(), reader.nextString());
+//            }
+            reader.endObject();
+        }
+        reader.endArray();
+        Log.d("LOAD", "LOADED");
     }
 
-    private void save() {
+    private void save() throws IOException {
+        JsonWriter writer = new JsonWriter(new FileWriter(new File(Environment.getExternalStorageDirectory(), "save.json")));
+        writer.beginArray();
+        for (int i = 0; i < 10; i++) { // lines
+            writer.beginObject();
+            writer.name(TAG + i);
+            writer.value(((EditText) this.root.findViewById(EDITTEXT_IDS[i])).getText().toString());
+            writer.endObject();
+        }
+        writer.endArray();
+        writer.close();
 
+        Log.d("SAVE", "SAVED");
     }
 }
