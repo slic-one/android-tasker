@@ -7,5 +7,6 @@
     <string name="new_page">New Page</string>
     <string name="display_on_widget">Display current page on widget</string>
     <string name="undo_changes">Undo changes</string>
+    <string name="save_changes">Save changes</string>
 
 </resources>

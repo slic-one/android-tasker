@@ -12,6 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -34,6 +35,9 @@ public class MainActivity extends AppCompatActivity {
 
     private SharedPreferences sharedPref;
 
+    // Specifies if there are any unsaved changes in the text fields
+    boolean isSaved = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,41 +50,45 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        //save before exiting
+        // If everything is saved/unchanged - just quit
+        if (checkTextFieldsForChanges())
+            MainActivity.this.finish();
+        else {
+            // If changes were made - ask to save them
+            AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
+            builder1.setMessage("Save changes?");
+            builder1.setCancelable(true);
 
-        AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
-        builder1.setMessage("Save changes?");
-        builder1.setCancelable(true);
+            builder1.setPositiveButton(
+                    "Yes",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            saveTasks();
+                            updateWidget();
+                            MainActivity.this.finish();
+                        }
+                    });
 
-        builder1.setPositiveButton(
-                "Yes",
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        saveTasks();
-                        updateWidget();
-                        MainActivity.this.finish();
+            builder1.setNegativeButton(
+                    "No",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            MainActivity.this.finish();
+                        }
+                    });
+
+            builder1.setNeutralButton(
+                    "Cancel",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            dialog.cancel();
+                        }
                     }
-                });
+            );
 
-        builder1.setNegativeButton(
-                "No",
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        MainActivity.this.finish();
-                    }
-                });
-
-        builder1.setNeutralButton(
-                "Cancel",
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        dialog.cancel();
-                    }
-                }
-        );
-
-        AlertDialog alert11 = builder1.create();
-        alert11.show();
+            AlertDialog alert11 = builder1.create();
+            alert11.show();
+        }
     }
 
     @Override
@@ -98,6 +106,9 @@ public class MainActivity extends AppCompatActivity {
 
                 loadTasks();
                 return true;
+            case R.id.action_save_changes:
+                saveTasks();
+                return true;
             default:
                 // Invoke the superclass to handle unrecognized action.
                 return super.onOptionsItemSelected(item);
@@ -112,7 +123,8 @@ public class MainActivity extends AppCompatActivity {
         }
         editor.clear().apply();
 
-        //debug toast
+        updateWidget();
+
         Toast.makeText(getApplicationContext(), "Saved", Toast.LENGTH_SHORT).show();
     }
 
@@ -134,4 +146,29 @@ public class MainActivity extends AppCompatActivity {
         sendBroadcast(intent);
     }
 
+    // Test
+    public void clearRow() {
+        EditText toClear = (EditText)findViewById(R.id.appwidget_edittext1);// view.getRootView().getTag()
+        toClear.setText("");
+    }
+
+    public void addRow(View view) {
+        Toast.makeText(this, "Not yet implemented", Toast.LENGTH_SHORT).show();
+    }
+
+    public void rowActions(View view) {
+        /* TODO custom AlertDialog with next options:
+                delete row
+                add due date
+                change background
+        */
+        Toast.makeText(this, "Not yet implemented", Toast.LENGTH_SHORT).show();
+    }
+
+    private boolean checkTextFieldsForChanges() {
+        // Test
+
+        EditText et = (EditText)findViewById(R.id.appwidget_edittext1);
+        return (et.getText().toString().equals(sharedPref.getString(String.valueOf(0), "")));
+    }
 }
