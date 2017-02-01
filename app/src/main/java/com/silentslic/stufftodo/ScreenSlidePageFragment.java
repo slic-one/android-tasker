@@ -32,8 +32,6 @@ import static android.content.ContentValues.TAG;
 
 public class ScreenSlidePageFragment extends Fragment {
 
-    private final String TAG;
-
     private  View root;
 
     SharedPreferences sharedPref;
@@ -51,10 +49,6 @@ public class ScreenSlidePageFragment extends Fragment {
             R.id.appwidget_edittext10,
     };
 
-    public ScreenSlidePageFragment() {
-        TAG = this.getTag();
-    }
-
     @Override
     public void onResume() {
         super.onResume();
@@ -64,6 +58,19 @@ public class ScreenSlidePageFragment extends Fragment {
 //        catch (Exception ex) {
 //            ex.printStackTrace();
 //        }
+
+
+        try {
+            EditText et;
+            for (int i = 0; i < EDITTEXT_IDS.length; i++) {
+                et = (EditText) root.findViewById(EDITTEXT_IDS[i]);
+                Log.i(String.valueOf(i) + " create", this.getArguments().getString("tag", "none") + String.valueOf(i));
+                et.setText(this.getArguments().getString("tag", "none") + "+" + String.valueOf(i));
+            }
+        }
+        catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }
 
     @Override
@@ -97,18 +104,18 @@ public class ScreenSlidePageFragment extends Fragment {
 //        else
 //            rootView.setTag("defpage");
 
-        //this.root = rootView;
+        this.root = rootView;
 
 //        sharedPref = PreferenceManager.getDefaultSharedPreferences(getContext());
 
 //        try {
-            EditText et;
-            for (int i = 0; i < EDITTEXT_IDS.length; i++) {
-                et = (EditText) rootView.findViewById(EDITTEXT_IDS[i]);
-                Log.i(String.valueOf(i) + " create", TAG + String.valueOf(i));
-                et.setText(TAG + "+" + String.valueOf(i));
-//                et.setText(sharedPref.getString(root.getTag() + String.valueOf(i), ""));
-            }
+//            EditText et;
+//            for (int i = 0; i < EDITTEXT_IDS.length; i++) {
+//                et = (EditText) rootView.findViewById(EDITTEXT_IDS[i]);
+//                Log.i(String.valueOf(i) + " create", this.getTag() + String.valueOf(i));
+//                et.setText(this.getTag() + "+" + String.valueOf(i));
+////                et.setText(sharedPref.getString(root.getTag() + String.valueOf(i), ""));
+//            }
 //        }
 //        catch (Exception ex) {
 //            Toast.makeText(getContext(), ex.getMessage(), Toast.LENGTH_LONG).show();

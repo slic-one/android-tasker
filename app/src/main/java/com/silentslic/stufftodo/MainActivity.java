@@ -122,9 +122,9 @@ public class MainActivity extends FragmentActivity {
 
         counter = 0;
 
-        for (int i = 0; i < NUM_PAGES; i++) {
-            addPage(i);
-        }
+//        for (int i = 0; i < NUM_PAGES; i++) {
+//            addPage(i);
+//        }
 
     }
 
@@ -161,7 +161,7 @@ public class MainActivity extends FragmentActivity {
 
         //getSupportFragmentManager().beginTransaction().add(f, String.valueOf("p"+id)).commit();
 
-        getSupportFragmentManager().beginTransaction().add(R.id.pager, f, String.valueOf("p"+id)).commit();
+        getSupportFragmentManager().beginTransaction().add(ScreenSlidePageFragment.newInstance(String.valueOf("p"+id)), String.valueOf("p"+id)).commit();
 //        getSupportFragmentManager().beginTransaction().replace(R.id.pager, f, String.valueOf("p"+id)).commit();
         //getSupportFragmentManager().beginTransaction().add(ScreenSlidePageFragment.newInstance("page" + counter++), String.valueOf("p"+id)).commit();
 
